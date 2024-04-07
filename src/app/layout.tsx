@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
-        <div className="flex min-w-full justify-center items-center h-20 bg-red-700">
+        <div className="flex min-w-full justify-center items-center h-20 bg-red-700 mb-10">
           <Link href={"/"}>
             Pokedex
           </Link>
