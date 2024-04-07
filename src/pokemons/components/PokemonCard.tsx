@@ -9,7 +9,7 @@ interface Props {
 export const PokemonCard = ({ pokemon }: Props) => {
     const { name, id } = pokemon
     return (
-        <div className="relative flex flex-col justify-center bg-gradient-to-r from-rose-100 to-teal-100">
+        <div className="relative flex flex-col justify-center from-rose-100 to-teal-100 rounded">
             <div className="mx-auto flex w-96 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">
                 <div className='flex justify-center'>
 
