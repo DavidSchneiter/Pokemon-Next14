@@ -9,6 +9,7 @@ interface Props {
     params: { id: string }
 }
 export async function generateStaticParams() {
+
     const data: PokedexResponse = await fetch('https://pokeapi.co/api/v2/pokedex/1',
         { next: { revalidate: revalidationMonthly } }
     )
@@ -22,24 +23,24 @@ export async function generateStaticParams() {
 
 }
 
-export async function generateMetadata({ params }:Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     try {
-      const { id, name } = await getPokemon(params.id);
-    
-      return {
-        title: `#${ id } - ${ name.replace(/^\w/, (c) => c.toUpperCase()) }`,
-        description: `Página del pokémon ${ name }`
-      }
-      
+        const { id, name } = await getPokemon(params.id);
+
+        return {
+            title: `#${id} - ${name.replace(/^\w/, (c) => c.toUpperCase())}`,
+            description: `Página del pokémon ${name}`
+        }
+
     } catch (error) {
-      return {
-        title: 'Pokemon no encontrado',
-        description: 'Pokemon no existente'
-      }
+        return {
+            title: 'Pokemon no encontrado',
+            description: 'Pokemon no existente'
+        }
     }
-  }
-  
+}
+
 
 const getPokemon = async (id: string): Promise<PokemonResponse> => {
     try {
@@ -48,9 +49,9 @@ const getPokemon = async (id: string): Promise<PokemonResponse> => {
                 revalidate: revalidationMonthly
             }
         }).then(resp => resp.json());
-    
+
         return pokemon;
-        
+
     } catch (error) {
         notFound()
     }
@@ -180,7 +181,6 @@ export default async function PokemonPage({ params }: Props) {
             <div>
                 <Link href={`/pokedex/${pokemon.id + 1}`}
                     className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-                    aria-disabled={pokemon.id == 1}
                 >
                     <span className="sr-only">Next</span>
                     <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
