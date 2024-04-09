@@ -1,4 +1,5 @@
 export interface SimplePokemon {
-    id: string,
+    idRegional: string,
+    idNacional: string,
     name: string
 }
