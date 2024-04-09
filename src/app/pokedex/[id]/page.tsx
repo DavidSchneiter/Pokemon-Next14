@@ -10,7 +10,7 @@ interface Props {
 }
 export async function generateStaticParams() {
 
-    const data: PokedexResponse = await fetch('https://pokeapi.co/api/v2/pokedex/1',
+    const data: PokedexResponse = await fetch('https://pokeapi.co/api/v2/pokedex/3',
         { next: { revalidate: revalidationMonthly } }
     )
         .then(res => res.json())

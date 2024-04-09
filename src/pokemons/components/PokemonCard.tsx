@@ -8,24 +8,28 @@ interface Props {
 }
 
 export const PokemonCard = ({ pokemon }: Props) => {
-    const { name, id } = pokemon
+    const { name, idRegional, idNacional } = pokemon
     return (
         <div className="relative flex flex-col justify-center from-rose-100 to-teal-100 rounded">
             <div className="mx-auto flex w-96 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">
-                <Link href={`/pokedex/${id}`}>
+                <Link key={pokemon.idNacional} href={`/pokedex/${idNacional}`}>
                     <div className='flex justify-center'>
                         <Image
                             key={name}
-                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${idNacional}.png`}
                             width={150}
                             height={150}
-                            alt={`${name}`}
+                            alt={name}
                             priority={false}
                         />
                     </div>
                 </Link>
-                <div className="p-4">
-                    <small className="text-blue-400 text-xs"># - {id}</small>
+                <div className="p-4 flex justify-around">
+                    <small className="text-blue-400 text-xs">Regional # - {idRegional}</small>
+                    <small className="text-blue-400 text-xs">Nacional # - {idNacional}</small>
+                </div>
+                <div className="p-4 self-center">
+
                     <h1 className="text-2xl font-medium text-slate-600 pb-2 capitalize">{name}</h1>
                 </div>
             </div>
