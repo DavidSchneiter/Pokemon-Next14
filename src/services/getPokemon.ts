@@ -1,7 +1,23 @@
-import { PokedexNacional, PokedexResponse, SimplePokemon } from "@/pokemons"
+import { PokedexNacional, PokedexResponse, PokemonResponse, SimplePokemon } from "@/pokemons"
 import { revalidationMonthly } from "./revalidation"
+import { notFound } from "next/navigation";
 
-export const getPokemons = async (region: string): Promise<SimplePokemon[]> => {
+export const getPokemon = async (id: string): Promise<PokemonResponse> => {
+    try {
+        const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
+            next: {
+                revalidate: revalidationMonthly
+            }
+        }).then(resp => resp.json());
+
+        return pokemon;
+
+    } catch (error) {
+        notFound()
+    }
+}
+
+export const getPokemonsByRegion = async (region: string): Promise<SimplePokemon[]> => {
     const data: PokedexResponse = await fetch(`https://pokeapi.co/api/v2/pokedex/${region}`,
         { next: { revalidate: revalidationMonthly } }
     )
@@ -15,26 +31,19 @@ export const getPokemons = async (region: string): Promise<SimplePokemon[]> => {
     return pokemon
 }
 
-export const pokedexNacional = async ():Promise<PokedexNacional> => {
+export const pokedexNacional = async (): Promise<PokedexNacional> => {
 
     return {
-        kanto: await getPokemons('kanto'),
-        johto: await getPokemons('updated-johto'),
-        hoenn: await  getPokemons('updated-hoenn'),
-        sinnoh: await getPokemons('extended-sinnoh'),
-        tesselia: await getPokemons('updated-unova'),
-        kalos: {
-            kalos_central: await getPokemons('kalos-central'),
-            kalos_coastal: await getPokemons('kalos-coastal'),
-            kalos_mountain: await getPokemons('kalos-mountain'),
-        },
-        alola: {
-            alola: await getPokemons('updated-alola'),
-            melemele: await getPokemons('original-melemele'),
-            akala: await getPokemons('original-akala'),
-            ulaula: await getPokemons('original-ulaula'),
-            poni: await getPokemons('original-poni'),
-        }
+        kanto: await getPokemonsByRegion('kanto'),
+        johto: await getPokemonsByRegion('updated-johto'),
+        hoenn: await getPokemonsByRegion('updated-hoenn'),
+        sinnoh: await getPokemonsByRegion('extended-sinnoh'),
+        tesselia: await getPokemonsByRegion('updated-unova'),
+        kalos_central: await getPokemonsByRegion('kalos-central'),
+        kalos_coastal: await getPokemonsByRegion('kalos-coastal'),
+        kalos_mountain: await getPokemonsByRegion('kalos-mountain'),
+        alola: await getPokemonsByRegion('updated-alola')
+
     }
-    
+
 }

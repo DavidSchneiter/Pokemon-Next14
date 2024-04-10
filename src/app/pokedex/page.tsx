@@ -1,5 +1,5 @@
 import { PokemonGrid } from "@/pokemons/components/PokemonGrid";
-import { getPokemons, pokedexNacional } from "@/services";
+import { pokedexNacional } from "@/services";
 
 
 

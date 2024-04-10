@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-    params: { id: string }
+    params: { name: string }
 }
 export async function generateStaticParams() {
 
@@ -13,11 +13,8 @@ export async function generateStaticParams() {
         { next: { revalidate: revalidationMonthly } }
     )
         .then(res => res.json())
-
-    const staticPokemons = Array.from({ length: data.pokemon_entries.length }).map((v, i) => `${i + 1}`);
-    
-    return staticPokemons.map(id => ({
-        id: id
+    return data.pokemon_entries.map(name => ({
+        name: name.pokemon_species.name
     }));
 
 }
@@ -25,7 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     try {
-        const { id, name } = await getPokemon(params.id);
+        const { id, name } = await getPokemon(params.name);
 
         return {
             title: `#${id} - ${name.replace(/^\w/, (c) => c.toUpperCase())}`,
@@ -45,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PokemonPage({ params }: Props) {
 
-    const pokemon = await getPokemon(params.id)
+    const pokemon = await getPokemon(params.name)
     return (
         <div className="flex mt-5 items-center text-slate-800">
             <div>

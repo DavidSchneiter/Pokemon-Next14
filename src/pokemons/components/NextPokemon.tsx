@@ -11,7 +11,7 @@ export const NextPokemon = ({ id }: Props) => {
     id == 1 ? setDisable(!disable) : ''
     return (
         <>
-            <Link href={`/pokedex/${id - 1}`}
+            <Link href={`/pokemon/${id - 1}`}
                 className={`${disable ? 'disabled' : ''} relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
                 aria-disabled={disable}
                 tabIndex={disable ? -1 : undefined}

@@ -7,11 +7,7 @@ export default function PokedexLayout({
 }) {
   return (
     <>
-    <div className="flex min-w-full justify-center items-center h-20 bg-red-700">
-          <Link href={"/"}>
-            Pokedex
-          </Link>
-    </div>
+    
           {children}
     </>
   );

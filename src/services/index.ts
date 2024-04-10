@@ -1,2 +1,2 @@
 export {revalidationMonthly} from './revalidation'
-export {getPokemons, pokedexNacional} from './getPokemon'
+export {getPokemon, getPokemonsByRegion, pokedexNacional} from './getPokemon'

@@ -3,33 +3,33 @@
 import { SimplePokemon } from "./simple-pokemon";
 
 export interface PokedexResponse {
-    descriptions:    Description[];
-    id:              number;
-    is_main_series:  boolean;
-    name:            string;
-    names:           Name[];
+    descriptions: Description[];
+    id: number;
+    is_main_series: boolean;
+    name: string;
+    names: Name[];
     pokemon_entries: PokemonEntry[];
-    region:          null;
-    version_groups:  any[];
+    region: null;
+    version_groups: any[];
 }
 
 export interface Description {
     description: string;
-    language:    Language;
+    language: Language;
 }
 
 export interface Language {
     name: string;
-    url:  string;
+    url: string;
 }
 
 export interface Name {
     language: Language;
-    name:     string;
+    name: string;
 }
 
 export interface PokemonEntry {
-    entry_number:    number;
+    entry_number: number;
     pokemon_species: Language;
 }
 
@@ -39,16 +39,8 @@ export interface PokedexNacional {
     hoenn: SimplePokemon[];
     sinnoh: SimplePokemon[];
     tesselia: SimplePokemon[];
-    kalos: {
-        kalos_central: SimplePokemon[];
-        kalos_coastal: SimplePokemon[];
-        kalos_mountain: SimplePokemon[];
-    };
-    alola: {
-            alola:  SimplePokemon[],
-            melemele:  SimplePokemon[],
-            akala:  SimplePokemon[],
-            ulaula:  SimplePokemon[],
-            poni:  SimplePokemon[],
-    };
+    kalos_central: SimplePokemon[];
+    kalos_coastal: SimplePokemon[];
+    kalos_mountain: SimplePokemon[];
+    alola: SimplePokemon[];
 }
