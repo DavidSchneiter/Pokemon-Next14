@@ -7,12 +7,14 @@ interface Props {
     pokemon: SimplePokemon;
 }
 
-export const PokemonCard = ({ pokemon }: Props) => {
-    const { name, idRegional, idNacional } = pokemon
+export const PokemonCard = async({ pokemon }: Props) => {
+
+    const { name, idNacional } = pokemon
+
     return (
         <div className="relative flex flex-col justify-center from-rose-100 to-teal-100 rounded">
             <div className="mx-auto flex w-96 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">
-                <Link key={pokemon.idNacional} href={`/pokemon/${idNacional}`}>
+                <Link key={pokemon.idNacional} href={`/pokedex/pokemon/${name}`}>
                     <div className='flex justify-center'>
                         <Image
                             key={name}
@@ -25,9 +27,16 @@ export const PokemonCard = ({ pokemon }: Props) => {
                     </div>
                 </Link>
                 <div className="p-4 flex justify-around">
-                    <small className="text-blue-400 text-xs">Regional # - {idRegional}</small>
                     <small className="text-blue-400 text-xs">Nacional # - {idNacional}</small>
                 </div>
+                {/* <div className='flex items-center' >
+                            {
+                                getActualPokemon.types.map( ({type}) =>
+
+                                    <h2 key={type.name} className={`${tipo(type.name)} capitalize `} > {type.name}</h2>
+                                )
+                            }
+                        </div> */}
                 <div className="p-4 self-center">
 
                     <h1 className="text-2xl font-medium text-slate-600 pb-2 capitalize">{name}</h1>

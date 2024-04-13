@@ -1,2 +1,3 @@
+export { getMovesDetails } from './getMoves'
 export {revalidationMonthly} from './revalidation'
-export {getPokemon, getPokemonsByRegion, pokedexNacional} from './getPokemon'
+export {getPokemon,getPokemons } from './getPokemon'
