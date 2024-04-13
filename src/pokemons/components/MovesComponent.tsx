@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { MovesResponse } from '../interfaces/moves';
 
 interface Props {
