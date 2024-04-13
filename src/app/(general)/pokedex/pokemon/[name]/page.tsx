@@ -113,8 +113,8 @@ export default async function PokemonPage({ params }: Props) {
                             {
                                 getActualPokemon.abilities.map(ability => (
                                     <div key={ability.ability.name}>
-                                        <p className="mr-2 capitalize">{ability.ability.name}</p>
-                                        <p>{ability.is_hidden ? 'No Oculta ' : 'Oculta'}</p>
+                                        <p key={ability.ability.name} className="mr-2 capitalize">{ability.ability.name}</p>
+                                        <p key={ability.ability.name}>{ability.is_hidden ? 'No Oculta ' : 'Oculta'}</p>
                                     </div>
                                 ))
                             }
