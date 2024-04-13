@@ -1,7 +1,5 @@
 import { SimplePokemon } from '../interfaces/simple-pokemon';
 import { PokemonCard } from './PokemonCard';
-import { PokedexNacional, PokedexResponse } from '../interfaces/pokedex';
-import { RegionesComponent } from './RegionesComponent';
 
 interface Props {
   pokedex: SimplePokemon[];
