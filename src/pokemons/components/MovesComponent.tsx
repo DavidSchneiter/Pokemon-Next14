@@ -13,12 +13,12 @@ export const MovesComponent = ({ move }: Props) => {
     }
     return (
         <>
-            <div className={`grid  grid-cols-2  max-h-60 overflow-hidden ${expanded ? 'expanded' : ''} gap-2 py-3 md:grid-cols-3 lg:grid-cols-4 `}>
+            <div className={`grid  grid-cols-2  max-h-60 overflow-hidden ${expanded ? 'expanded' : ''} gap-2 py-3  lg:grid-cols-3  xl:grid-cols-4`}>
                 {
                     move.map((move) => (
-                        <div key={move.id} style={{ 'margin': '0px' }} className={`text-white bg-gradient-to-r font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ${move.type.name} `}>
-                            <p key={move.name} className="mr-2 capitalize">{move.name}</p>
-                            <p key={move.type.name} className="mr-2 capitalize">{move.type.name}</p>
+                        <div key={move.name == 'pyschic' ? 'pyschicMove': move.name} style={{ 'margin': '0px' }} className={`text-white bg-gradient-to-r font-medium rounded-lg text-sm  py-2.5 text-center mb-2 ${move.type.name} `}>
+                            <p className="mr-2 capitalize">{move.name}</p>
+                            <p  className="mr-2 capitalize">{move.type.name}</p>
                         </div>
 
                     ))
