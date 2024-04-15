@@ -51,17 +51,13 @@ export default async function PokemonPage({ params }: Props) {
     const getPreviousPokemon = await getPokemon((getActualPokemon.id == 1) ? '1' : (getActualPokemon.id - 1).toString())
 
     return (
-        <div className="flex m-5 justify-center items-center text-slate-800">
-            <div>
+        <div className="flex flex-col m-5 items-center text-slate-800 md:flex-row">
+            <div className="absolute left-12 top-24 w-4/12 md:static md:w-40 lg:w-60">
                 {
                     getActualPokemon.id == 1 ?
                         <Link href={`/pokedex`}
-                            className={` relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
+                            className={`flex flex-col relative items-center rounded-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
                         >
-                            <span className="sr-only">Previous</span>
-                            <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
-                            </svg>
                             <Image
                                 src={'/pokedex.png'}
                                 width={150}
@@ -69,13 +65,15 @@ export default async function PokemonPage({ params }: Props) {
                                 alt={`Pokedex`}
                                 className="mb-5"
                             />
+                            <h1>Home</h1>
                         </Link>
                         :
-                        <NextPokemon  nextPokemon={getPreviousPokemon} position={'previous'} />
+                        <NextPokemon  nextPokemon={getPreviousPokemon} />
                 }
 
             </div>
-            <div className="relative  rounded-[20px] w-[700px] mx-auto bg-white bg-clip-border  shadow-lg  p-3">
+            <div className="absolute top-80 md:static rounded-[20px] w-11/12 mx-auto my-2 bg-white bg-clip-border shadow-lg p-3 md:w-1/2"
+            >
                 <div className="mt-2 mb-8 w-full">
                     <h1 className="px-2 text-xl font-bold text-slate-700 capitalize">
                         #{getActualPokemon.id} {getActualPokemon.name}
@@ -92,11 +90,11 @@ export default async function PokemonPage({ params }: Props) {
                             {
                                 getActualPokemon.types.map(({ type }) =>
 
-                                    <h2 key={type.name} className={`${(type.name)} capitalize type`} > {type.name}</h2>
+                                    <h2 key={type.url} className={`${(type.name)} capitalize type`} > {type.name}</h2>
                                 )
                             }
                         </div>
-                        <div className="border-solid flex flex-col">
+                        <div className="border-solid flex flex-col w-full">
 
                             <h3 className="w-full h-8 text-white text-xl font-medium text-center rounded-xl bg-gradient-to-br from-orange-400 to-pink-500">Movements</h3>
 
@@ -105,16 +103,16 @@ export default async function PokemonPage({ params }: Props) {
 
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 px-2 w-full">
+                <div className="lg:grid-cols-2 grid grid-cols-1 gap-4 px-2 w-full ">
 
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4  drop-shadow-lg ">
                         <p className="text-sm text-gray-600">Abilitys</p>
                         <div className="text-base font-medium text-navy-700 flex">
                             {
                                 getActualPokemon.abilities.map(ability => (
-                                    <div key={ability.ability.name}>
+                                    <div key={ability.ability.name} className="pr-3">
                                         <p  className="mr-2 capitalize">{ability.ability.name}</p>
-                                        <p >{ability.is_hidden ? 'No Oculta ' : 'Oculta'}</p>
+                                        <p >{ability.is_hidden ? 'No Hidden ' : 'Hidden'}</p>
                                     </div>
                                 ))
                             }
@@ -187,11 +185,11 @@ export default async function PokemonPage({ params }: Props) {
 
                 </div>
             </div>
-            <div>
+            <div className={'absolute top-24 right-12 w-2/6 md:static md:w-40 lg:w-60'} >
                 {
                     getActualPokemon.id == nacional.length ?
                         <Link href={`/pokedex`}
-                            className={` relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
+                        className={`flex flex-col relative items-center rounded-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
                         >
                             <Image
                                 src={'/pokedex.png'}
@@ -200,13 +198,10 @@ export default async function PokemonPage({ params }: Props) {
                                 alt={`Pokedex`}
                                 className="mb-5"
                             />
-                            <span className="sr-only">Next</span>
-                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
-                        </svg>
+                            <h1>Home</h1>
                         </Link>
                         :
-                        <NextPokemon nextPokemon={getNextPokemon} position={'next'} />
+                        <NextPokemon nextPokemon={getNextPokemon} />
                 }
             </div>
         </div>
